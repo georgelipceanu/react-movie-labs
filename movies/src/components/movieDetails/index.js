@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useQuery } from 'react-query';
+import { useNavigate, Link } from "react-router-dom";
+import { getMovieRecommendations } from "../../api/tmdb-api";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -8,7 +11,8 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
+import MovieReviews from "../movieReviews";
+import { Button, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
 const root = {
     display: "flex",
@@ -22,6 +26,23 @@ const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate(); // use navigate to change routes programmatically
+
+  const { data: recommendationsData, isLoading, error } = useQuery(
+    ['recommendations', { id: movie.id }],
+    getMovieRecommendations,
+    { enabled: dropdownOpen } // only fetch when dropdown is open
+  );
+
+  const recommendations = recommendationsData?.results || [];
+
+  const handleSelectRecommendation = (event) => {
+    const selectedMovieId = event.target.value;
+    if (selectedMovieId) {
+      navigate(`/movies/${selectedMovieId}`);
+    }
+  };
 
   return (
     <>
@@ -71,6 +92,32 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           </li>
         ))}
       </Paper>
+
+      <FormControl fullWidth sx={{ marginTop: 2 }}>
+        <InputLabel id="recommendations-label">Recommendations</InputLabel>
+        <Select
+          labelId="recommendations-label"
+          id="recommendations-select"
+          open={dropdownOpen}
+          onClose={() => setDropdownOpen(false)}
+          onOpen={() => setDropdownOpen(true)}
+          label="Recommendations"
+          onChange={handleSelectRecommendation} // Call this function on selection
+        >
+          {isLoading ? (
+            <MenuItem>Loading...</MenuItem>
+          ) : error ? (
+            <MenuItem>Error loading recommendations</MenuItem>
+          ) : (
+            recommendations.map((rec) => (
+              <MenuItem key={rec.id} value={rec.id}>
+                {rec.title || rec.name} {/* Fallback for title */}
+              </MenuItem>
+            ))
+          )}
+        </Select>
+      </FormControl>
+
       <Fab
         color="secondary"
         variant="extended"
@@ -87,6 +134,12 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
+        
+        {/* <Link to={`/movies/${movie.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            See recommendations...
+          </Button>
+        </Link> */}
       </>
   );
 };
