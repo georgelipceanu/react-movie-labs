@@ -6,7 +6,7 @@ import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
 const NowPlayingPage = (props) => {
-  const {  data, error, isLoading, isError }  = useQuery('upcoming', getNowPlayingMovies)
+  const {  data, error, isLoading, isError }  = useQuery('now_playing', getNowPlayingMovies)
   if (isLoading) {
     return <Spinner />
   }
