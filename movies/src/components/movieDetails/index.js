@@ -29,6 +29,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate(); // use navigate to change routes programmatically
 
+
   const { data: recommendationsData, isLoading, error } = useQuery(
     ['recommendations', { id: movie.id }],
     getMovieRecommendations,
@@ -135,11 +136,16 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         <MovieReviews movie={movie} />
       </Drawer>
         
-        {/* <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            See recommendations...
-          </Button>
-        </Link> */}
+      <Link 
+      to={{
+        pathname: `/recommended/${movie.id}`,
+        state: { movie }  // Pass the entire movie object, not just movieId
+      }}
+    >
+      <Button variant="outlined" size="medium" color="primary">
+        See recommendations...
+      </Button>
+    </Link>
       </>
   );
 };
