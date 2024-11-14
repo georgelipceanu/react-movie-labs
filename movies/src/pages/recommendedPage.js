@@ -1,27 +1,43 @@
-import React, { useContext } from "react";
-import { useQuery } from 'react-query';
-import PageTemplate from "../components/templateMoviePage";
-import { MoviesContext } from "../contexts/moviesContext";
-import { getMovieRecommendations } from "../api/tmdb-api";
-import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import PageTemplate from '../components/templateMovieListPage';
+import { getMovie } from "../api/tmdb-api"; 
+import { getMovieRecommendations } from "../api/tmdb-api"; 
+import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import Spinner from '../components/spinner';
 import { useLocation } from "react-router-dom";
-import { getMovie } from "../api/tmdb-api";
+import AddToWatchListIcon from "../components/cardIcons/addToWatchList";
 
-const RecommendedPage = (props) => {
+const RecommendedPage = () => {
+ // const { id } = useParams(); // Capture the movie id from the URL
   const location = useLocation();
-  const movieId = location.state.movie.id;
+  const movie = location.state.movie;
 
-  const { data: movie, error, isLoading, isError } = useQuery(
-    ["movie", { id: movieId }],
-    getMovie
-  );
-
-  const { data: recommendationsData } = useQuery(
+  const { data: recommendationsData, error: recommendationsError, isLoading: recommendationsLoading, isError: isRecommendationsError } = useQuery(
     ['recommendations', { id: movie.id }],
     getMovieRecommendations,
+    { enabled: !!movie }
   );
+  if (recommendationsLoading) {
+    return <Spinner />
+  }
+
+  if (isRecommendationsError) {
+    return <h1>{recommendationsError.message}</h1>
+  }  
 
   const movies = recommendationsData.results;
+
+  // Redundant, but necessary to avoid app crashing.
+  const favorites = movies.filter(m => m.favorite)
+  localStorage.setItem('favorites', JSON.stringify(favorites))
+
+  // console.log("Movie ID:", movie.id);
+  // console.log("Movie Data:", movie);
+  // console.log("Recommendations Data:", recommendationsData); //debugging
+
+
 
   return (
     <PageTemplate
@@ -29,7 +45,7 @@ const RecommendedPage = (props) => {
       //movie={movie}
       movies={movies}
       action={(movie) => {
-        return <AddToFavoritesIcon movie={movie} />
+        return <AddToWatchListIcon movie={movie} />
       }}
     />
   );

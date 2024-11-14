@@ -136,10 +136,18 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         <MovieReviews movie={movie} />
       </Drawer>
         
-      <Link 
+      {/* <Link 
       to={{
-        pathname: `/recommended/${movie.id}`,
-        state: { movie }  // Pass the entire movie object, not just movieId
+        pathname: `/movies/${movie.id}/recommended`,
+        state={{
+          movieId: movie.id,
+        
+      }}
+    > */}
+    <Link
+      to={`/movies/${movie.id}/recommended`}
+      state={{
+          movie: movie,
       }}
     >
       <Button variant="outlined" size="medium" color="primary">
