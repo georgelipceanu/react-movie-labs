@@ -7,7 +7,7 @@ import { getMovieRecommendations } from "../api/tmdb-api";
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 import Spinner from '../components/spinner';
 import { useLocation } from "react-router-dom";
-import AddToWatchListIcon from "../components/cardIcons/addToWatchList";
+import AddToWatchList from "../components/cardIcons/addToWatchList";
 
 const RecommendedPage = () => {
  // const { id } = useParams(); // Capture the movie id from the URL
@@ -45,7 +45,12 @@ const RecommendedPage = () => {
       //movie={movie}
       movies={movies}
       action={(movie) => {
-        return <AddToWatchListIcon movie={movie} />
+        return (
+          <>
+          <AddToFavoritesIcon movie={movie} />
+          <AddToWatchList movie={movie} />
+          </>
+          );
       }}
     />
   );
