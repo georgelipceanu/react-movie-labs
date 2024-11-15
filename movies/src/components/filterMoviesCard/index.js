@@ -50,6 +50,15 @@ export default function FilterMoviesCard(props) {
     handleChange(e, "genre", e.target.value);
   };
 
+
+  const handleStartDateChange = (e) => {
+    handleChange(e, "startDate", e.target.value);
+  };
+
+  const handleEndDateChange = (e) => {
+    handleChange(e, "endDate", e.target.value);
+  };
+
   return (
     <Card 
       sx={{
@@ -88,6 +97,25 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+
+        <TextField
+          sx={{ ...formControl }}
+          id="start-date"
+          label="Start Date"
+          type="date"
+          variant="filled"
+          value={props.startDate}
+          onChange={handleStartDateChange}
+        />
+        <TextField
+          sx={{ ...formControl }}
+          id="end-date"
+          label="End Date"
+          type="date"
+          variant="filled"
+          value={props.endDate}
+          onChange={handleEndDateChange}
+        />
       </CardContent>
       <CardMedia
         sx={{ height: 300 }}
