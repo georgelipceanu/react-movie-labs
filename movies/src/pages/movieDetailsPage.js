@@ -2,15 +2,23 @@ import React from "react";
 import { useParams } from 'react-router-dom';
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
-import { getMovie } from '../api/tmdb-api'
+import { getActors, getMovie } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
+import ActorPageTemplate from "../components/templateMovieListPage"
+import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 const MoviePage = (props) => {
   const { id } = useParams();
   const { data: movie, error, isLoading, isError } = useQuery(
     ["movie", { id: id }],
     getMovie
+  );
+
+  
+  const { data: actors, error: actorError, isLoading: actorIsLoading, isError: actorIsError } = useQuery(
+    ["actors", { id }],
+    () => getActors(id)
   );
 
   if (isLoading) {
@@ -21,6 +29,17 @@ const MoviePage = (props) => {
     return <h1>{error.message}</h1>;
   }
 
+  console.log(movie)
+
+  if (actorIsLoading) {
+    return <Spinner />;
+  }
+
+  if (actorIsError) {
+    return <h1>{actorError.message}</h1>;
+  }
+  console.log(actors.cast)
+
   return (
     <>
       {movie ? (
@@ -28,6 +47,19 @@ const MoviePage = (props) => {
           <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
           </PageTemplate>
+          <ActorPageTemplate
+            title="Movie Cast"
+            actors={actors.cast} // Pass only the cast array
+            isMovie={false}
+            action={(movie) => {
+              return (
+              <>
+              <AddToFavoritesIcon movie={movie} />
+              </>
+              );
+            
+            }}
+            />
         </>
       ) : (
         <p>Waiting for movie details</p>

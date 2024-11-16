@@ -135,26 +135,19 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
-        
-      {/* <Link 
-      to={{
-        pathname: `/movies/${movie.id}/recommended`,
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1em' }}>
+      <Link
+        to={`/movies/${movie.id}/recommended`}
         state={{
-          movieId: movie.id,
-        
-      }}
-    > */}
-    <Link
-      to={`/movies/${movie.id}/recommended`}
-      state={{
           movie: movie,
-      }}
-    >
-      <Button variant="outlined" size="medium" color="primary">
-        See recommendations...
-      </Button>
-    </Link>
-      </>
+        }}
+      >
+        <Button variant="outlined" size="medium" color="primary">
+          See full recommendations page...
+        </Button>
+      </Link>
+    </div>
+  </>
   );
 };
 export default MovieDetails ;

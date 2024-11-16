@@ -28,6 +28,7 @@ const HomePage = (props) => {
     <PageTemplate
       title="Discover Movies"
       movies={movies}
+      isMovie={true}
       action={(movie) => {
         return (
         <>
