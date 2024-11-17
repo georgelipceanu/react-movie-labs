@@ -5,7 +5,7 @@ import PageTemplate from "../components/templateMoviePage";
 import { getActors, getMovie } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
-import ActorPageTemplate from "../components/templateMovieListPage"
+import ActorListPageTemplate from "../components/templateMovieListPage"
 import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 const MoviePage = (props) => {
@@ -17,8 +17,8 @@ const MoviePage = (props) => {
 
   
   const { data: actors, error: actorError, isLoading: actorIsLoading, isError: actorIsError } = useQuery(
-    ["actors", { id }],
-    () => getActors(id)
+    ["actors", { id: id }],
+    getActors
   );
 
   if (isLoading) {
@@ -47,7 +47,7 @@ const MoviePage = (props) => {
           <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
           </PageTemplate>
-          <ActorPageTemplate
+          <ActorListPageTemplate
             title="Movie Cast"
             actors={actors.cast} // Pass only the cast array
             isMovie={false}

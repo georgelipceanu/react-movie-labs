@@ -5,7 +5,7 @@ import MovieList from "../movieList";
 import ActorList from "../actorList";
 import Grid from "@mui/material/Grid2";
 
-function MovieListPageTemplate({ movies, actors, title, action, isMovie }) {
+function MovieListPageTemplate({ movies, actors, title, action, isMovie=true }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
@@ -26,7 +26,7 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie }) {
       .filter((m) => {
         return endDate ? new Date(m.release_date) <= new Date(endDate) : true;
       })
-  : movies; // No filters applied when isMovie is false
+  : movies;
 
   const displayedActors = !isMovie
     ? actors.filter((a) => {
