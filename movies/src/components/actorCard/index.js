@@ -64,13 +64,13 @@ export default function ActorCard({ actor, action }) {
           <Grid size={{xs: 6}}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {actor.release_date}
+              {actor.character}{" "}
             </Typography>
           </Grid>
           <Grid size={{xs: 6}}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
-              {"  "} {actor.vote_average}{" "}
+              {actor.popularity}{" "}
             </Typography>
           </Grid>
         </Grid>

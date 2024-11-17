@@ -26,38 +26,39 @@ const ActorDetails = ({ actor }) => {  // Don't miss this!
   return (
     <>
       <Typography variant="h5" component="h3">
-        Overview
+        Biography
       </Typography>
 
       <Typography variant="h6" component="p">
-        {actor.overview}
+        {actor.biography}
       </Typography>
 
       <Paper 
         component="ul" 
         sx={{...root}}
       >
-        <li>
-          <Chip label="Genres" sx={{...chip}} color="primary" />
-        </li>
-        {actor.genres.map((g) => (
-          <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
-          </li>
-        ))}
+        <Chip
+            icon={<StarRate />}
+            label={`Popularity: ${actor.popularity || "N/A"}`}
+            sx={{ ...chip }}
+          />
       </Paper>
       
       <Paper component="ul" sx={{...root}}>
         <Chip icon={<AccessTimeIcon />} label={`${actor.runtime} min.`} />
-        <Chip
-          icon={<MonetizationIcon />}
-          label={`${actor.revenue.toLocaleString()}`}
-        />
+        <li>
+          <Chip
+            label={`Place of Birth: ${actor.place_of_birth || "N/A"}`}
+            sx={{ ...chip }}
+          />
+        </li>
         <Chip
           icon={<StarRate />}
           label={`${actor.vote_average} (${actor.vote_count}`}
         />
-        <Chip label={`Released: ${actor.release_date}`} />
+        <li>
+          <Chip label={`Birthday: ${actor.birthday || "N/A"}`} sx={{ ...chip }} />
+        </li>
 
         <Chip
           icon={<Language />}
