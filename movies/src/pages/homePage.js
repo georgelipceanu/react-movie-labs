@@ -29,6 +29,7 @@ const HomePage = (props) => {
       title="Discover Movies"
       movies={movies}
       isMovie={true}
+      subHeader={false}
       action={(movie) => {
         return (
         <>

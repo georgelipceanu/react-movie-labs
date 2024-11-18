@@ -49,6 +49,7 @@ const ActorPage = (props) => {
             title="Movies Featured In"
             movies={movies.results} // Pass only the cast array
             isMovie={true}
+            subHeader={true}
             action={(movie) => {
               return (
               <>

@@ -38,8 +38,7 @@ const MoviePage = (props) => {
   if (actorIsError) {
     return <h1>{actorError.message}</h1>;
   }
-  console.log(actors.cast)
-
+  console.log("Passing subHeader to MovieListPageTemplate:", true);
   return (
     <>
       {movie ? (
@@ -51,6 +50,7 @@ const MoviePage = (props) => {
             title="Movie Cast"
             actors={actors.cast} // Pass only the cast array
             isMovie={false}
+            subHeader={true} // Correctly named
             action={(movie) => {
               return (
               <>

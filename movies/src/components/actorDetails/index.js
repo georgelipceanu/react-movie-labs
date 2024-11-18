@@ -5,9 +5,9 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MonetizationIcon from "@mui/icons-material/MonetizationOn";
 import StarRate from "@mui/icons-material/StarRate";
 import NavigationIcon from "@mui/icons-material/Navigation";
-import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
-import Drawer from "@mui/material/Drawer";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import Language from "@mui/icons-material/Language";
 
 const root = {
@@ -42,28 +42,24 @@ const ActorDetails = ({ actor }) => {  // Don't miss this!
             label={`Popularity: ${actor.popularity || "N/A"}`}
             sx={{ ...chip }}
           />
-      </Paper>
-      
-      <Paper component="ul" sx={{...root}}>
-        <Chip icon={<AccessTimeIcon />} label={`${actor.runtime} min.`} />
-        <li>
+        <Chip label={`Birthday: ${actor.birthday || "N/A"}`} sx={{ ...chip }} />
+
+        {actor.deathday === null ? (
           <Chip
-            label={`Place of Birth: ${actor.place_of_birth || "N/A"}`}
+            icon={<CheckCircleIcon />}
+            label="Still Alive!"
+            color="success"
             sx={{ ...chip }}
           />
-        </li>
-        <Chip
-          icon={<StarRate />}
-          label={`${actor.vote_average} (${actor.vote_count}`}
-        />
-        <li>
-          <Chip label={`Birthday: ${actor.birthday || "N/A"}`} sx={{ ...chip }} />
-        </li>
+        ) : (
+          <Chip
+            icon={<RemoveCircleIcon />}
+            label={`Death Day: ${actor.deathday}`}
+            color="error"
+            sx={{ ...chip }}
+          />
+        )}
 
-        <Chip
-          icon={<Language />}
-          label={`${actor.original_language}`}
-        />
       </Paper>
       
       </>

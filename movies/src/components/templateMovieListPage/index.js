@@ -5,12 +5,13 @@ import MovieList from "../movieList";
 import ActorList from "../actorList";
 import Grid from "@mui/material/Grid2";
 
-function MovieListPageTemplate({ movies, actors, title, action, isMovie=true }) {
+function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, subHeader=false }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
   const [startDate, setStartDate] = useState(""); 
   const [endDate, setEndDate] = useState(""); 
+  console.log("Subheader1: ",subHeader);
 
   const displayedMovies = isMovie
   ? movies
@@ -44,7 +45,7 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true }) 
   return (
     <Grid container>
       <Grid size={12}>
-        <Header title={title} />
+        <Header title={title} subHeader={subHeader}/>
       </Grid>
       <Grid container sx={{flex: "1 1 500px"}}>
         
