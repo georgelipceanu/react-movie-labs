@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
+import ActorFilterCard from "../filterActorsCard";
 import MovieList from "../movieList";
 import ActorList from "../actorList";
 import Grid from "@mui/material/Grid2";
@@ -49,7 +50,7 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
       </Grid>
       <Grid container sx={{flex: "1 1 500px"}}>
         
-      {isMovie && (
+      {isMovie ? (
           <Grid
             key="find"
             size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
@@ -63,6 +64,21 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
               endDate={endDate}
             />
           </Grid>
+        ) : (
+          <Grid
+            key="find"
+            size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
+            sx={{ padding: "20px" }}
+          >
+            <ActorFilterCard
+              onUserInput={handleChange}
+              titleFilter={nameFilter}
+              genreFilter={genreFilter}
+              startDate={startDate}
+              endDate={endDate}
+            />
+          </Grid>
+
         )}
         {isMovie ? (
           <MovieList action={action} movies={displayedMovies}></MovieList>
