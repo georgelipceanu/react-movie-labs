@@ -23,20 +23,6 @@ const formControl =
 
 export default function FilterActorsCard(props) {
 
-  const { data, error, isLoading, isError } = useQuery("genres", getGenres);
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (isError) {
-    return <h1>{error.message}</h1>;
-  }
-  const genres = data.genres;
-  if (genres[0].name !== "All"){
-    genres.unshift({ id: "0", name: "All" });
-  }
-
   const handleChange = (e, type, value) => {
     e.preventDefault();
     props.onUserInput(type, value); // NEW
@@ -46,6 +32,13 @@ export default function FilterActorsCard(props) {
     handleChange(e, "name", e.target.value);
   };
 
+  const handleSortChange = (e) => {
+    handleChange(e, "sort", e.target.value);
+  };
+
+  const handleDirectionChange = (e) => {
+    handleChange(e, "direction", e.target.value);
+  };
 
   return (
     <Card 
@@ -69,11 +62,57 @@ export default function FilterActorsCard(props) {
             />
 
       </CardContent>
+
+      {/* <FormControl sx={{...formControl}}>
+          <InputLabel id="genre-label">Genre</InputLabel>
+          <Select
+            labelId="genre-label"
+            id="genre-select"
+            defaultValue=""
+            value={props.genreFilter}
+            onChange={handleGenreChange}
+          >
+            {genres.map((genre) => {
+              return (
+                <MenuItem key={genre.id} value={genre.id}>
+                  {genre.name}
+                </MenuItem>
+              );
+            })}
+          </Select> */}
+        
+      <FormControl sx={{...formControl}}>
+      <InputLabel id="genre-label">Sort by</InputLabel>
+          <Select
+            labelId="sort-label"
+            id="sort-select"
+            value={props.sort || ""}
+            onChange={handleSortChange}
+          >
+            <MenuItem value="popularity">Popularity</MenuItem>
+      </Select>
+      </FormControl>
+
+      <FormControl sx={{...formControl}}>
+      <InputLabel id="genre-label">Direction</InputLabel>
+          <Select
+            labelId="direction-label"
+            id="direction-select"
+            defaultValue=""
+            value={props.direction || ""}
+            onChange={handleDirectionChange}
+          >
+            <MenuItem value="ascending">Ascending</MenuItem>
+            <MenuItem value="descending">Descending</MenuItem>
+      </Select>
+      </FormControl>
+
       <CardMedia
         sx={{ height: 300 }}
         image={img}
         title="Filter"
       />
+        
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />

@@ -12,7 +12,8 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
   const genreId = Number(genreFilter);
   const [startDate, setStartDate] = useState(""); 
   const [endDate, setEndDate] = useState(""); 
-  console.log("Subheader1: ",subHeader);
+  const [sort, setSort] = useState("");
+  const [direction, setDirection] = useState("");
 
   const displayedMovies = isMovie
   ? movies
@@ -31,16 +32,32 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
   : movies;
 
   const displayedActors = !isMovie
-    ? actors.filter((a) => {
-        return a.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
-      })
+    ? actors
+        .filter((a) => {
+          return a.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
+        })
+        .sort((a1, a2) => {
+          if (direction === "ascending"){
+            if (sort === "popularity") {
+              return a1.popularity - a2.popularity;
+            } 
+          } else 
+            if (sort === "popularity") {
+              return a2.popularity - a1.popularity;
+            }
+          return 0; // No sorting
+          })
     : actors;
+
 
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
     else if (type === "genre") setGenreFilter(value);
     else if (type === "startDate") setStartDate(value); 
     else if (type === "endDate") setEndDate(value); 
+    else if (type === "sort") setSort(value);
+    else if (type === "direction") setDirection(value);
+
   };
 
   return (
@@ -73,9 +90,9 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
             <ActorFilterCard
               onUserInput={handleChange}
               titleFilter={nameFilter}
-              genreFilter={genreFilter}
-              startDate={startDate}
-              endDate={endDate}
+              sort={sort}
+              direction={direction}
+
             />
           </Grid>
 

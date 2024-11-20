@@ -21,7 +21,6 @@ const root = {
 const chip = { margin: 0.5 };
 
 const ActorDetails = ({ actor }) => {  // Don't miss this!
-  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
