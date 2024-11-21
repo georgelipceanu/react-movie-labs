@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid2";
 
 function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, subHeader=false }) {
   const [nameFilter, setNameFilter] = useState("");
+  const [roleFilter, setRoleFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
   const [startDate, setStartDate] = useState(""); 
@@ -36,6 +37,9 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
         .filter((a) => {
           return a.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
         })
+        .filter((a) => {
+          return a.character.toLowerCase().search(roleFilter.toLowerCase()) !== -1;
+        })
         .sort((a1, a2) => {
           if (direction === "ascending"){
             if (sort === "popularity") {
@@ -57,7 +61,7 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
     else if (type === "endDate") setEndDate(value); 
     else if (type === "sort") setSort(value);
     else if (type === "direction") setDirection(value);
-
+    else if (type === "role") setRoleFilter(value);
   };
 
   return (
@@ -90,6 +94,7 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
             <ActorFilterCard
               onUserInput={handleChange}
               titleFilter={nameFilter}
+              roleFilter={roleFilter}
               sort={sort}
               direction={direction}
 

@@ -32,6 +32,10 @@ export default function FilterActorsCard(props) {
     handleChange(e, "name", e.target.value);
   };
 
+  const handleRoleChange = (e, props) => {
+    handleChange(e, "role", e.target.value);
+  };
+
   const handleSortChange = (e) => {
     handleChange(e, "sort", e.target.value);
   };
@@ -54,33 +58,25 @@ export default function FilterActorsCard(props) {
             <TextField
                 sx={{...formControl}}
                 id="filled-search"
-                label="Search field"
+                label="Search Name"
                 type="search"
                 variant="filled"
                 value={props.titleFilter}
                 onChange={handleTextChange}
             />
 
+            <TextField
+                sx={{...formControl}}
+                id="filled-search-role"
+                label="Search Role"
+                type="search"
+                variant="filled"
+                value={props.roleFilter}
+                onChange={handleRoleChange}
+            />
+
       </CardContent>
 
-      {/* <FormControl sx={{...formControl}}>
-          <InputLabel id="genre-label">Genre</InputLabel>
-          <Select
-            labelId="genre-label"
-            id="genre-select"
-            defaultValue=""
-            value={props.genreFilter}
-            onChange={handleGenreChange}
-          >
-            {genres.map((genre) => {
-              return (
-                <MenuItem key={genre.id} value={genre.id}>
-                  {genre.name}
-                </MenuItem>
-              );
-            })}
-          </Select> */}
-        
       <FormControl sx={{...formControl}}>
       <InputLabel id="genre-label">Sort by</InputLabel>
           <Select
