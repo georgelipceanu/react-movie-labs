@@ -10,9 +10,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
-import { getGenres } from "../../api/tmdb-api";
-import { useQuery } from "react-query";
-import Spinner from '../spinner'
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import Button from "@mui/material/Button";
 
 const formControl = 
   {
@@ -40,8 +40,10 @@ export default function FilterActorsCard(props) {
     handleChange(e, "sort", e.target.value);
   };
 
-  const handleDirectionChange = (e) => {
-    handleChange(e, "direction", e.target.value);
+  const changeDirection = (e) => {
+    e.preventDefault();
+    const change = props.direction === "ascending" ? "descending" : "ascending";
+    props.onUserInput("direction", change);
   };
 
   return (
@@ -89,18 +91,14 @@ export default function FilterActorsCard(props) {
       </Select>
       </FormControl>
 
-      <FormControl sx={{...formControl}}>
-      <InputLabel id="genre-label">Direction</InputLabel>
-          <Select
-            labelId="direction-label"
-            id="direction-select"
-            defaultValue=""
-            value={props.direction || ""}
-            onChange={handleDirectionChange}
-          >
-            <MenuItem value="ascending">Ascending</MenuItem>
-            <MenuItem value="descending">Descending</MenuItem>
-      </Select>
+      <FormControl sx={{ ...formControl }}>
+        <Button 
+          variant="contained" 
+          onClick={changeDirection}
+          startIcon={props.direction === "ascending" ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+        >
+          {props.direction === "ascending" ? "Ascending" : "Descending"}
+        </Button>
       </FormControl>
 
       <CardMedia
