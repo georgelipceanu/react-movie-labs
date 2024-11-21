@@ -88,6 +88,7 @@ export default function FilterActorsCard(props) {
             onChange={handleSortChange}
           >
             <MenuItem value="popularity">Popularity</MenuItem>
+            <MenuItem value="alphabetically">Alphabetically</MenuItem>
       </Select>
       </FormControl>
 
@@ -106,14 +107,6 @@ export default function FilterActorsCard(props) {
         image={img}
         title="Filter"
       />
-        
-      <CardContent>
-        <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
-          <br />
-        </Typography>
-      </CardContent>
     </Card>
   );
 }

@@ -10,6 +10,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import Button from "@mui/material/Button";
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
@@ -58,6 +61,16 @@ export default function FilterMoviesCard(props) {
   const handleEndDateChange = (e) => {
     handleChange(e, "endDate", e.target.value);
   };
+
+  const handleSortChange = (e) => {
+    handleChange(e, "sort", e.target.value);
+  };
+
+  const changeDirection = (e) => {
+    const change = props.direction === "ascending" ? "descending" : "ascending";
+    props.onUserInput("direction", change);
+  };
+
 
   return (
     <Card 
@@ -117,18 +130,35 @@ export default function FilterMoviesCard(props) {
           onChange={handleEndDateChange}
         />
       </CardContent>
+
+      <FormControl sx={{...formControl}}>
+      <InputLabel id="genre-label">Sort by</InputLabel>
+          <Select
+            labelId="sort-label"
+            id="sort-select"
+            value={props.sort || ""}
+            onChange={handleSortChange}
+          >
+            <MenuItem value="vote_average">Vote Average</MenuItem>
+            <MenuItem value="alphabetically">Alphabetically</MenuItem>
+      </Select>
+      </FormControl>
+
+      <FormControl sx={{ ...formControl }}>
+        <Button 
+          variant="contained" 
+          onClick={changeDirection}
+          startIcon={props.direction === "ascending" ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+        >
+          {props.direction === "ascending" ? "Ascending" : "Descending"}
+        </Button>
+      </FormControl>
+
       <CardMedia
         sx={{ height: 300 }}
         image={img}
         title="Filter"
       />
-      <CardContent>
-        <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
-          <br />
-        </Typography>
-      </CardContent>
     </Card>
   );
 }

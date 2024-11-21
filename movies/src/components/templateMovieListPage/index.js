@@ -30,6 +30,21 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
       .filter((m) => {
         return endDate ? new Date(m.release_date) <= new Date(endDate) : true;
       })
+      .sort((m1, m2) => {
+        if (direction === "ascending"){
+          if (sort === "vote_average") {
+            return m1.vote_average - m2.vote_average;
+          } else if (sort === "alphabetically") {
+            return m1.title.localeCompare(m2.title);
+          }
+        } else 
+          if (sort === "vote_average") {
+            return m2.vote_average - m1.vote_average;
+          } else if (sort === "alphabetically") {
+            return m2.title.localeCompare(m1.title);
+          }
+        return 0; // No sorting
+        })
   : movies;
 
   const displayedActors = !isMovie
@@ -44,10 +59,14 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
           if (direction === "ascending"){
             if (sort === "popularity") {
               return a1.popularity - a2.popularity;
-            } 
+            } else if (sort === "alphabetically") {
+              return a1.name.localeCompare(a2.name);
+            }
           } else 
             if (sort === "popularity") {
               return a2.popularity - a1.popularity;
+            }  else if (sort === "alphabetically") {
+              return a2.name.localeCompare(a1.name);
             }
           return 0; // No sorting
           })
@@ -83,6 +102,8 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
               genreFilter={genreFilter}
               startDate={startDate}
               endDate={endDate}
+              sort={sort}
+              direction={direction}
             />
           </Grid>
         ) : (
