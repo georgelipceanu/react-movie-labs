@@ -16,6 +16,7 @@ import Grid from "@mui/material/Grid2";
 import img from '../../images/film-poster-placeholder.png';
 import Avatar from '@mui/material/Avatar';
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 export default function MovieCard({ movie, action }) {
   const { favorites, addToFavorites, watchList, addToWatchList } = useContext(MoviesContext);
@@ -85,14 +86,25 @@ export default function MovieCard({ movie, action }) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
+
+   
       
         {action(movie)}
+
+             
+      <Link to={`/movies/${movie.id}/recommended`}
+      state={{
+        movie: movie,
+      }}>
+          <LightbulbIcon color="primary" />
+        </Link>
       
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
         </Link>
+
         
       </CardActions>
     </Card>
