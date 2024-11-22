@@ -109,7 +109,7 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
         ) : (
           <Grid
             key="find"
-            size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
+              size={subHeader ? { xs: 12, sm: 8, md: 6, lg: 4, xl: 3 } : { xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
             sx={{ padding: "20px" }}
           >
             <ActorFilterCard

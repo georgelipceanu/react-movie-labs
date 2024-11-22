@@ -5,8 +5,6 @@ import PageTemplate from "../components/templateMoviePage";
 import { getActors, getMovie } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
-import ActorListPageTemplate from "../components/templateMovieListPage"
-import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 const MoviePage = (props) => {
   const { id } = useParams();
@@ -16,10 +14,6 @@ const MoviePage = (props) => {
   );
 
   
-  const { data: actors, error: actorError, isLoading: actorIsLoading, isError: actorIsError } = useQuery(
-    ["actors", { id: id }],
-    getActors
-  );
 
   if (isLoading) {
     return <Spinner />;
@@ -31,13 +25,7 @@ const MoviePage = (props) => {
 
   console.log(movie)
 
-  if (actorIsLoading) {
-    return <Spinner />;
-  }
 
-  if (actorIsError) {
-    return <h1>{actorError.message}</h1>;
-  }
   console.log("Passing subHeader to MovieListPageTemplate:", true);
   return (
     <>
@@ -46,20 +34,7 @@ const MoviePage = (props) => {
           <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
           </PageTemplate>
-          <ActorListPageTemplate
-            title="Movie Cast"
-            actors={actors.cast} // Pass only the cast array
-            isMovie={false}
-            subHeader={true} // Correctly named
-            action={(movie) => {
-              return (
-              <>
-              <AddToFavoritesIcon movie={movie} />
-              </>
-              );
-            
-            }}
-            />
+          
         </>
       ) : (
         <p>Waiting for movie details</p>

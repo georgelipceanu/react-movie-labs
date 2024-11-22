@@ -6,11 +6,19 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { getMovieImages } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
+import ActorListPageTemplate from "../templateMovieListPage"
+import AddToFavoritesIcon from "../cardIcons/addToFavorites";
+import { getActors } from "../../api/tmdb-api";
 
 const TemplateMoviePage = ({ movie, children }) => {
   const { data , error, isLoading, isError } = useQuery(
     ["images", { id: movie.id }],
     getMovieImages
+  );
+
+  const { data: actors, error: actorError, isLoading: actorIsLoading, isError: actorIsError } = useQuery(
+    ["actors", { id: movie.id }],
+    getActors
   );
 
   if (isLoading) {
@@ -21,6 +29,14 @@ const TemplateMoviePage = ({ movie, children }) => {
     return <h1>{error.message}</h1>;
   }
   const images = data.posters 
+
+  if (actorIsLoading) {
+    return <Spinner />;
+  }
+
+  if (actorIsError) {
+    return <h1>{actorError.message}</h1>;
+  }
 
   return (
     <>
@@ -53,6 +69,20 @@ const TemplateMoviePage = ({ movie, children }) => {
 
         <Grid size={{xs: 9}}>
           {children}
+          <ActorListPageTemplate
+            title="Movie Cast"
+            actors={actors.cast} // Pass only the cast array
+            isMovie={false}
+            subHeader={true} // Correctly named
+            action={(movie) => {
+              return (
+              <>
+              <AddToFavoritesIcon movie={movie} />
+              </>
+              );
+            
+            }}
+            />
         </Grid>
       </Grid>
     </>
