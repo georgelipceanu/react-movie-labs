@@ -10,7 +10,7 @@ import { Pagination } from "@mui/material";
 const HomePage = (props) => {
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 11;
+  const itemsPerPage = 15;
   const {  data, error, isLoading, isError }  = useQuery(
     ['discover', { page: currentPage }], 
     getMovies
@@ -56,7 +56,7 @@ const HomePage = (props) => {
       }}
     />
      <Pagination
-        count={Math.ceil(movies.length / 10)} 
+        count={Math.ceil(movies.length / itemsPerPage)} 
         page={currentPage}
         onChange={handlePageChange}
         color="secondary"
