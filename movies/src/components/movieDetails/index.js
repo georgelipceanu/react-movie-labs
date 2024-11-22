@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import { Button, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import Language from "@mui/icons-material/Language";
 
 const root = {
     display: "flex",
@@ -73,6 +74,10 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         <Chip
           icon={<MonetizationIcon />}
           label={`${movie.revenue.toLocaleString()}`}
+        />
+        <Chip
+          icon={<Language />}
+          label={`${movie.original_language}`}
         />
         <Chip
           icon={<StarRate />}
