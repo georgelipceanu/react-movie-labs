@@ -27,7 +27,7 @@ const UpcomingMoviesPage = () => {
         movies={movies}
         action={(movie) => <div>{movie.title}</div>}
         currentPage={currentPage}
-      setCurrentPage={(page) => {
+        setCurrentPage={(page) => {
         if (canNavigate(page, totalPages)) {
           setCurrentPage(page);
         }

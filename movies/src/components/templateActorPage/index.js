@@ -10,8 +10,10 @@ import MovieListPageTemplate from "../templateMovieListPage";
 import AddToFavoritesIcon from "../cardIcons/addToFavorites";
 import AddToWatchListIcon from "../cardIcons/addToWatchList";
 import { getMoviesByActor } from "../../api/tmdb-api";
+import { canNavigate } from "../../utils/footerHandling";
 
 const TemplateActorPage = ({ actor, children }) => {
+  const [currentPage, setCurrentPage] = useState(1);
   const { data , error, isLoading, isError } = useQuery(
     ["images", { id: actor.id }],
     getActorImages
@@ -41,6 +43,11 @@ const TemplateActorPage = ({ actor, children }) => {
   if (moviesIsError) {
     return <h1>{moviesError.message}</h1>;
   }
+
+  const moviesList = movies.results;
+  const moviesPerPage = 10;
+  const totalPages = Math.ceil(moviesList.length / moviesPerPage);
+  const displayedMovies = moviesList.slice((currentPage - 1) * moviesPerPage, currentPage * moviesPerPage);
 
   return (
     <>
@@ -75,9 +82,16 @@ const TemplateActorPage = ({ actor, children }) => {
           {children}
           <MovieListPageTemplate
             title="Movies Featured In"
-            movies={movies.results} // Pass only the cast array
+            movies={displayedMovies}
             isMovie={true}
             subHeader={true}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={(page) => {
+              if (canNavigate(page, totalPages)) {
+                setCurrentPage(page);
+              }
+            }}
             action={(movie) => {
               return (
               <>
