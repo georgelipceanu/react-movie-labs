@@ -44,6 +44,13 @@ const HomePage = (props) => {
       movies={movies}
       isMovie={true}
       subHeader={false}
+      currentPage={currentPage}
+      setCurrentPage={(page) => {
+        if (canNavigate(page, totalPages)) {
+          setCurrentPage(page);
+        }
+      }}
+      totalPages={totalPages}
       action={(movie) => {
         return (
         <>
@@ -60,14 +67,6 @@ const HomePage = (props) => {
         onChange={handlePageChange}
         color="secondary"
       /> PREVIOUS ATTEMPT, ONLY GOT PAGES on PAGE 1*/} 
-      <Footer 
-        pageNum={currentPage} 
-        setCurrentPage={(page) => {
-          if (canNavigate(page, totalPages)) {
-            setCurrentPage(page);
-          }
-        }}
-      />
     </>
   );
 };

@@ -5,8 +5,9 @@ import ActorFilterCard from "../filterActorsCard";
 import MovieList from "../movieList";
 import ActorList from "../actorList";
 import Grid from "@mui/material/Grid2";
+import Footer from "../footer";
 
-function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, subHeader=false }) {
+function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, subHeader=false, currentPage, totalPages, setCurrentPage, canNavigate }) {
   const [nameFilter, setNameFilter] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
@@ -128,8 +129,17 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
         ) : (
           <ActorList action={action} actors={displayedActors}></ActorList>
         )}
+        
+      </Grid>
+      <Grid size={12}>
+        <Footer
+        pageNum={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
       </Grid>
     </Grid>
+    
   );
 }
 export default MovieListPageTemplate;
