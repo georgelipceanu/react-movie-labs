@@ -6,16 +6,16 @@ import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 import AddToWatchList from '../components/cardIcons/addToWatchList'
 import { Pagination } from "@mui/material";
+import Footer from "../components/footer";
+import { canNavigate } from "../utils/footerHandling";
 
 const HomePage = (props) => {
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 15;
   const {  data, error, isLoading, isError }  = useQuery(
     ['discover', { page: currentPage }], 
     getMovies
   );
-
 
   if (isLoading) {
     return <Spinner />
@@ -25,15 +25,13 @@ const HomePage = (props) => {
     return <h1>{error.message}</h1>
   }  
   const movies = data.results;
-
+  const totalPages = data.total_pages;
   
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
   const addToFavorites = (movieId) => true 
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedMovies = movies.slice(startIndex, startIndex + itemsPerPage);
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
@@ -43,7 +41,7 @@ const HomePage = (props) => {
     <PageTemplate
     
       title="Discover Movies"
-      movies={paginatedMovies}
+      movies={movies}
       isMovie={true}
       subHeader={false}
       action={(movie) => {
@@ -56,11 +54,19 @@ const HomePage = (props) => {
       
       }}
     />
-     <Pagination
+     {/* <Pagination
         count={Math.ceil(movies.length / itemsPerPage)} 
         page={currentPage}
         onChange={handlePageChange}
         color="secondary"
+      /> PREVIOUS ATTEMPT, ONLY GOT PAGES on PAGE 1*/} 
+      <Footer 
+        pageNum={currentPage} 
+        setCurrentPage={(page) => {
+          if (canNavigate(page, totalPages)) {
+            setCurrentPage(page);
+          }
+        }}
       />
     </>
   );
