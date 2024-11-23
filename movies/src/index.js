@@ -20,6 +20,7 @@ import TrendingTodayPage from './pages/trendingPage'
 import { ThemeProvider } from "@mui/material/styles";
 import CustomTheme from "./components/theme/index"
 import CssBaseline from "@mui/material/CssBaseline";
+import FavoriteActorsPage from "./pages/favouriteActorsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +46,7 @@ const App = () => {
           <Routes>
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+            <Route path="/movies/favorite_actors" element={<FavoriteActorsPage />} />
             <Route path="/movies/watchlist" element={< WatchListPage/>} />
             <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
             <Route path="/movies/trending/today" element={<TrendingTodayPage />} />

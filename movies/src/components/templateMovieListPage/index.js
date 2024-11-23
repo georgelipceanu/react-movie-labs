@@ -7,7 +7,7 @@ import ActorList from "../actorList";
 import Grid from "@mui/material/Grid2";
 import Footer from "../footer";
 
-function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, subHeader=false, currentPage, totalPages, setCurrentPage, canNavigate }) {
+function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, subHeader=false, currentPage, totalPages, setCurrentPage }) {
   const [nameFilter, setNameFilter] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
@@ -54,7 +54,7 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
           return a.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
         })
         .filter((a) => {
-          return a.character.toLowerCase().search(roleFilter.toLowerCase()) !== -1;
+          return roleFilter ? a.character.toLowerCase().search(roleFilter.toLowerCase()) !== -1 : true; //BYPASSES CHARACTER IF NULL (FOR FAVOURITES)
         })
         .sort((a1, a2) => {
           if (direction === "ascending"){

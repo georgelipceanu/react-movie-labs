@@ -1,14 +1,20 @@
 import React, { useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
+import { ActorsContext } from "../../contexts/actorsContext";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const AddToFavoritesIcon = ({ movie }) => {
-  const context = useContext(MoviesContext);
+const AddToFavoritesIcon = ({ movie, actor }) => {
+  const moviesContext = useContext(MoviesContext);
+  const actorsContext = useContext(ActorsContext);
 
   const handleAddToFavorites = (e) => {
     e.preventDefault();
-    context.addToFavorites(movie);
+    if (movie) {
+      moviesContext.addToFavorites(movie);
+    } else if (actor) {
+      actorsContext.addToFavorites(actor);
+    }
   };
 
   return (
