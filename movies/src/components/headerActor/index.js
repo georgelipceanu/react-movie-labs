@@ -20,6 +20,12 @@ const ActorHeader = (props) => {
             flexWrap: "wrap",
             padding: 1.5,
             margin: 0,
+
+        }}
+        style={{
+          backgroundColor: "#1c3626", 
+          color: "#7ae6a3", 
+          fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
         }}
       >
       <IconButton aria-label="go back" onClick={() => navigate(-1)} >

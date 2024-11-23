@@ -9,13 +9,12 @@ import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import { Stack } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import img from '../../images/film-poster-placeholder.png';
 import Avatar from '@mui/material/Avatar';
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function ActorCard({ actor, action }) {
   const { favorites, addToFavorites } = useContext(ActorsContext);
@@ -33,7 +32,11 @@ export default function ActorCard({ actor, action }) {
   
 
   return (
-    <Card>
+    <Card style={{
+      backgroundColor: "#1c3626", 
+      color: "#7ae6a3", 
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+    }}>
       <CardHeader
         avatar={
 
@@ -63,7 +66,7 @@ export default function ActorCard({ actor, action }) {
         <Grid container>
           <Grid size={{xs: 6}}>
             <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
+              <AccountCircleIcon fontSize="small" />
               {actor.character}{" "}
             </Typography>
           </Grid>

@@ -17,6 +17,9 @@ import RecommendedPage from "./pages/recommendedPage";
 import ActorPage from "./pages/actorDetailsPage";
 import ActorsContextProvider from "./contexts/actorsContext";
 import TrendingTodayPage from './pages/trendingPage'
+import { ThemeProvider } from "@mui/material/styles";
+import CustomTheme from "./components/theme/index"
+import CssBaseline from "@mui/material/CssBaseline";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,10 +31,14 @@ const queryClient = new QueryClient({
   },
 });
 
+
+
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <ThemeProvider theme={CustomTheme}>
+        <CssBaseline />
         <SiteHeader />
         <MoviesContextProvider>
           <ActorsContextProvider>
@@ -51,6 +58,7 @@ const App = () => {
           </Routes>
           </ActorsContextProvider>
         </MoviesContextProvider>
+        </ThemeProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

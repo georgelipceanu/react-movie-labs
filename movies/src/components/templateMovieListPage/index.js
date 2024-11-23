@@ -86,7 +86,7 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
   return (
     <Grid container>
       <Grid size={12}>
-        <Header title={title} subHeader={subHeader}/>
+        <Header title={title} subHeader={subHeader} />
       </Grid>
       <Grid container sx={{flex: "1 1 500px"}}>
         

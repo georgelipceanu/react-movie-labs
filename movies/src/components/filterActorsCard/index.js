@@ -15,11 +15,11 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import Button from "@mui/material/Button";
 
 const formControl = 
-  {
-    margin: 1,
-    minWidth: 220,
-    backgroundColor: "rgb(255, 255, 255)"
-  };
+{
+  margin: 1,
+  minWidth: 220,
+  backgroundColor: "#7ae6a3"
+};
 
 export default function FilterActorsCard(props) {
 
@@ -48,9 +48,10 @@ export default function FilterActorsCard(props) {
 
   return (
     <Card 
-      sx={{
-        backgroundColor: "rgb(204, 204, 0)"
-      }} 
+    sx={{
+      backgroundColor: "#1c3626",
+      color: "#7ae6a3"
+    }} 
       variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h1">

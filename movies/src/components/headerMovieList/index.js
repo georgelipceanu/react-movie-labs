@@ -20,6 +20,11 @@ const Header = ({ title, subHeader = false }) => {
         flexWrap: "wrap",
         marginBottom: 1.5,
       }}
+      style={{
+        backgroundColor: "#1c3626", 
+        color: "#7ae6a3", 
+        fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+      }}
     >
       {/* Conditionally render the back and forward buttons */}
       {!subHeader && (

@@ -39,7 +39,12 @@ export default function MovieCard({ movie, action }) {
   };
 
   return (
-    <Card>
+    <Card
+    sx={{
+      backgroundColor: "#1c3626",
+      color: "#7ae6a3",
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif",
+    }}>
       <CardHeader
         avatar={
           <Stack direction="row" spacing={1}>

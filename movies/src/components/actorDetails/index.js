@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import Language from "@mui/icons-material/Language";
+import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 
 const root = {
     display: "flex",
@@ -17,18 +18,37 @@ const root = {
     listStyle: "none",
     padding: 1.5,
     margin: 0,
+    
+      backgroundColor: "#242424", 
+      color: "#ffffff", 
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+    
 };
-const chip = { margin: 0.5 };
+const chip = { margin: 0.5,
+      backgroundColor: "#999999", 
+      color: "#ffffff", 
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+ };
 
 const ActorDetails = ({ actor }) => {  // Don't miss this!
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3"
+      style={{
+        backgroundColor: "#242424", 
+        color: "#ffffff", 
+        fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+      }}>
         Biography
       </Typography>
 
-      <Typography variant="h6" component="p">
+      <Typography variant="h6" component="p"
+      style={{
+        backgroundColor: "#242424", 
+        color: "#ffffff", 
+        fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+      }}>
         {actor.biography}
       </Typography>
 
@@ -41,21 +61,21 @@ const ActorDetails = ({ actor }) => {  // Don't miss this!
             label={`Popularity: ${actor.popularity || "N/A"}`}
             sx={{ ...chip }}
           />
-        <Chip label={`Birthday: ${actor.birthday || "N/A"}`} sx={{ ...chip }} />
+        <Chip icon={<CalendarIcon />} label={`Birthday: ${actor.birthday || "N/A"}`} sx={{ ...chip }} />
 
         {actor.deathday === null ? (
           <Chip
             icon={<CheckCircleIcon />}
             label="Still Alive!"
             color="success"
-            sx={{ ...chip }}
+            
           />
         ) : (
           <Chip
             icon={<RemoveCircleIcon />}
             label={`Death Day: ${actor.deathday}`}
             color="error"
-            sx={{ ...chip }}
+            
           />
         )}
 

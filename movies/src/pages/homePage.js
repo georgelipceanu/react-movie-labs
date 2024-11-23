@@ -41,6 +41,7 @@ const HomePage = (props) => {
   return (
     <>
     <PageTemplate
+    
       title="Discover Movies"
       movies={paginatedMovies}
       isMovie={true}

@@ -14,6 +14,8 @@ import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import { Button, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import Language from "@mui/icons-material/Language";
+import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
+
 
 const root = {
     display: "flex",
@@ -22,8 +24,15 @@ const root = {
     listStyle: "none",
     padding: 1.5,
     margin: 0,
+    backgroundColor: "#242424", 
+      color: "#ffffff", 
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
 };
-const chip = { margin: 0.5 };
+const chip = { margin: 0.5,
+  backgroundColor: "#999999", 
+      color: "#ffffff", 
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+ };
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -48,11 +57,15 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" style={{backgroundColor: "#242424", 
+      color: "#ffffff", 
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }>
         Overview
       </Typography>
 
-      <Typography variant="h6" component="p">
+      <Typography variant="h6" component="p" style={{backgroundColor: "#242424", 
+      color: "#ffffff", 
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }>
         {movie.overview}
       </Typography>
 
@@ -70,20 +83,20 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         ))}
       </Paper>
       <Paper component="ul" sx={{...root}}>
-        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
-        <Chip
+        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} sx={{...chip}}/>
+        <Chip sx={{...chip}}
           icon={<MonetizationIcon />}
           label={`${movie.revenue.toLocaleString()}`}
         />
-        <Chip
+        <Chip sx={{...chip}}
           icon={<Language />}
           label={`${movie.original_language}`}
         />
-        <Chip
+        <Chip sx={{...chip}}
           icon={<StarRate />}
           label={`${movie.vote_average} (${movie.vote_count}`}
         />
-        <Chip label={`Released: ${movie.release_date}`} />
+        <Chip icon={<CalendarIcon />} label={`Released: ${movie.release_date}`} sx={{...chip}} />
       </Paper>
       <Paper 
         component="ul" 
@@ -99,9 +112,15 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         ))}
       </Paper>
 
-      <FormControl fullWidth sx={{ marginTop: 2 }}>
-        <InputLabel id="recommendations-label">Recommendations</InputLabel>
-        <Select
+      <FormControl fullWidth sx={{ marginTop: 2 }} >
+        <InputLabel id="recommendations-label" style={{backgroundColor: "#242424", 
+      backgroundColor: "#999999", 
+      color: "#ffffff",
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }>Recommendations</InputLabel>
+        <Select style={{backgroundColor: "#242424", 
+      backgroundColor: "#999999", 
+      color: "#ffffff",
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }
           labelId="recommendations-label"
           id="recommendations-select"
           open={dropdownOpen}
@@ -147,7 +166,10 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           movie: movie,
         }}
       >
-        <Button variant="outlined" size="medium" color="primary">
+        <Button variant="outlined" size="medium" color="primary" style={{backgroundColor: "#242424", 
+      color: "#ffffff", 
+      borderColor: "#ffffff",
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }>
           See full recommendations page...
         </Button>
       </Link>
