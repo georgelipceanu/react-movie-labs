@@ -131,15 +131,19 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
         )}
         
       </Grid>
+
+      {totalPages && (
       <Grid size={12}>
         <Footer
         pageNum={currentPage}
         setCurrentPage={setCurrentPage}
         totalPages={totalPages}
       />
-      </Grid>
+      
     </Grid>
-    
+      )}
+      </Grid>
+      
   );
 }
 export default MovieListPageTemplate;
