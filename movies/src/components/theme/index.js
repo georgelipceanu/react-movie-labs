@@ -13,7 +13,7 @@ const CustomTheme = createTheme({
       main: "#88fcb9"
     },
     background: {
-      default: "#242424"
+      default: "#a8a8a8"
     },
 
     card: {

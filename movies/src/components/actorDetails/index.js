@@ -19,8 +19,8 @@ const root = {
     padding: 1.5,
     margin: 0,
     
-      backgroundColor: "#242424", 
-      color: "#ffffff", 
+      backgroundColor: "#a8a8a8", 
+      color: "#000000", 
       fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
     
 };
@@ -36,18 +36,16 @@ const ActorDetails = ({ actor }) => {  // Don't miss this!
     <>
       <Typography variant="h5" component="h3"
       style={{
-        backgroundColor: "#242424", 
-        color: "#ffffff", 
-        fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+        backgroundColor: "#a8a8a8", 
+        fontFamily: "sans-serif", 
       }}>
         Biography
       </Typography>
 
       <Typography variant="h6" component="p"
       style={{
-        backgroundColor: "#242424", 
-        color: "#ffffff", 
-        fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+        backgroundColor: "#a8a8a8", 
+        fontFamily: "sans-serif", 
       }}>
         {actor.biography}
       </Typography>

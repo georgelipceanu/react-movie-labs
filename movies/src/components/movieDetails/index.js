@@ -24,9 +24,8 @@ const root = {
     listStyle: "none",
     padding: 1.5,
     margin: 0,
-    backgroundColor: "#242424", 
-      color: "#ffffff", 
-      fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+    backgroundColor: "#a8a8a8", 
+      fontFamily: " sans-serif", 
 };
 const chip = { margin: 0.5,
   backgroundColor: "#999999", 
@@ -57,14 +56,12 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
 
   return (
     <>
-      <Typography variant="h5" component="h3" style={{backgroundColor: "#242424", 
-      color: "#ffffff", 
+      <Typography variant="h5" component="h3" style={{backgroundColor: "#a8a8a8", 
       fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }>
         Overview
       </Typography>
 
-      <Typography variant="h6" component="p" style={{backgroundColor: "#242424", 
-      color: "#ffffff", 
+      <Typography variant="h6" component="p" style={{backgroundColor: "#a8a8a8", 
       fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }>
         {movie.overview}
       </Typography>
@@ -115,11 +112,9 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
       <FormControl fullWidth sx={{ marginTop: 2 }} >
         <InputLabel id="recommendations-label" style={{backgroundColor: "#242424", 
       backgroundColor: "#999999", 
-      color: "#ffffff",
       fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }>Recommendations</InputLabel>
         <Select style={{backgroundColor: "#242424", 
       backgroundColor: "#999999", 
-      color: "#ffffff",
       fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }
           labelId="recommendations-label"
           id="recommendations-select"
@@ -130,7 +125,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           onChange={handleSelectRecommendation} // Call this function on selection
         >
           {isLoading ? (
-            <MenuItem>Loading...</MenuItem>
+            <MenuItem>Loading Recs</MenuItem>
           ) : error ? (
             <MenuItem>Error loading recommendations</MenuItem>
           ) : (
