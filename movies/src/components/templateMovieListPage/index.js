@@ -7,6 +7,7 @@ import ActorList from "../actorList";
 import Grid from "@mui/material/Grid2";
 import Footer from "../footer";
 
+// TEMPLATE USED FOR BOTH ACTOR LISTS AND MOVIE LISTS
 function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, subHeader=false, currentPage, totalPages, setCurrentPage }) {
   const [nameFilter, setNameFilter] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
@@ -26,23 +27,23 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
         return genreId > 0 ? m.genre_ids.includes(genreId) : true;
       })
       .filter((m) => {
-        return startDate ? new Date(m.release_date) >= new Date(startDate) : true;
+        return startDate ? new Date(m.release_date) >= new Date(startDate) : true; // DATE COMPARISON
       })
       .filter((m) => {
-        return endDate ? new Date(m.release_date) <= new Date(endDate) : true;
+        return endDate ? new Date(m.release_date) <= new Date(endDate) : true; // DATE COMPARISON
       })
       .sort((m1, m2) => {
         if (direction === "ascending"){
           if (sort === "vote_average") {
             return m1.vote_average - m2.vote_average;
           } else if (sort === "alphabetically") {
-            return m1.title.localeCompare(m2.title);
+            return m2.title.localeCompare(m1.title); //STRING ALPHABETIC COMPARISON
           }
         } else 
           if (sort === "vote_average") {
             return m2.vote_average - m1.vote_average;
           } else if (sort === "alphabetically") {
-            return m2.title.localeCompare(m1.title);
+            return m1.title.localeCompare(m2.title); //STRING ALPHABETIC COMPARISON
           }
         return 0; // No sorting
         })
@@ -61,13 +62,13 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
             if (sort === "popularity") {
               return a1.popularity - a2.popularity;
             } else if (sort === "alphabetically") {
-              return a1.name.localeCompare(a2.name);
+              return a2.name.localeCompare(a1.name);
             }
           } else 
             if (sort === "popularity") {
               return a2.popularity - a1.popularity;
             }  else if (sort === "alphabetically") {
-              return a2.name.localeCompare(a1.name);
+              return a1.name.localeCompare(a2.name);
             }
           return 0; // No sorting
           })
@@ -94,7 +95,7 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
       {isMovie ? (
           <Grid
             key="find"
-            size={subHeader ? { xs: 12, sm: 8, md: 6, lg: 4, xl: 3 } : { xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
+            size={subHeader ? { xs: 12, sm: 8, md: 6, lg: 4, xl: 3 } : { xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }} // SMALLER CARDS IF SUBHEADER IS TRUE
             sx={{ padding: "20px" }}
           >
             <FilterCard
@@ -125,14 +126,14 @@ function MovieListPageTemplate({ movies, actors, title, action, isMovie=true, su
 
         )}
         {isMovie ? (
-          <MovieList action={action} movies={displayedMovies}></MovieList>
+          <MovieList action={action} movies={displayedMovies}></MovieList> // DISPLAYS MOVIES IF ISMOVIE
         ) : (
-          <ActorList action={action} actors={displayedActors}></ActorList>
+          <ActorList action={action} actors={displayedActors}></ActorList> // ACTORS OTHERWISE
         )}
         
       </Grid>
 
-      {totalPages && (
+      {totalPages && ( //FOOTER IF THERE IS PAGINATION
       <Grid size={12}>
         <Footer
         pageNum={currentPage}

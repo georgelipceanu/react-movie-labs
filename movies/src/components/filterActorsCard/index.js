@@ -43,7 +43,7 @@ export default function FilterActorsCard(props) {
   const changeDirection = (e) => {
     e.preventDefault();
     const change = props.direction === "ascending" ? "descending" : "ascending";
-    props.onUserInput("direction", change);
+    props.onUserInput("direction", change); // CHANGES DIRECTION OF BUTTON ON USER INPUT
   };
 
   return (

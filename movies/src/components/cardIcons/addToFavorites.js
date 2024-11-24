@@ -10,7 +10,7 @@ const AddToFavoritesIcon = ({ movie, actor }) => {
 
   const handleAddToFavorites = (e) => {
     e.preventDefault();
-    if (movie) {
+    if (movie) { //CHANGES FOR MOVIE OR ACTOR
       moviesContext.addToFavorites(movie);
     } else if (actor) {
       actorsContext.addToFavorites(actor);

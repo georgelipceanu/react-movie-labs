@@ -27,7 +27,7 @@ const MovieHeader = (props) => {
         style={{
           backgroundColor: "#1c3626", 
           color: "#7ae6a3", 
-          fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+          fontFamily: "'Playfair Display', 'Poppins', sans-serif", // ADDITIONAL FONTS ADDED (NOT LOADING)
         }}
       >
       <IconButton aria-label="go back" onClick={() => navigate(-1)} >

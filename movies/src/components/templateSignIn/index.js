@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../headerMovieList";
 import Grid from "@mui/material/Grid2";
 import { auth } from "../../config/firebase";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth"; 
 import { Button, Typography, Alert, Snackbar } from "@mui/material";
 import TextField from "@mui/material/TextField";
 

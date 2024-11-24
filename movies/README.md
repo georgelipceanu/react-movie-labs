@@ -43,6 +43,7 @@ Firebase Setup:
 
 ## API endpoints.
 
+e.g.
 + Discover list of movies - discover/movie
 + Movie details - movie/:id
 + Movie genres - /genre/movie/list

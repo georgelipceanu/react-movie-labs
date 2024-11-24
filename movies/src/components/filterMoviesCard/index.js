@@ -68,7 +68,7 @@ export default function FilterMoviesCard(props) {
 
   const changeDirection = (e) => {
     const change = props.direction === "ascending" ? "descending" : "ascending";
-    props.onUserInput("direction", change);
+    props.onUserInput("direction", change); // CHANGES DIRECTION OF BUTTON ON USER INPUT
   };
 
 
@@ -116,7 +116,7 @@ export default function FilterMoviesCard(props) {
           sx={{ ...formControl }}
           id="start-date"
           label="Start Date"
-          type="date"
+          type="date" // NEW DATE TEXTFIELD TYPE
           variant="filled"
           value={props.startDate}
           onChange={handleStartDateChange}

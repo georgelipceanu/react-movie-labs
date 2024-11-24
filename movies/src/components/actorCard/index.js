@@ -16,7 +16,7 @@ import img from '../../images/film-poster-placeholder.png';
 import Avatar from '@mui/material/Avatar';
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-export default function ActorCard({ actor, action }) {
+export default function ActorCard({ actor, action }) { //BOILER PLATE CODE FROM MOVIE CARD
   const { favorites, addToFavorites } = useContext(ActorsContext);
 
   if (favorites.find((id) => id === actor.id)) {

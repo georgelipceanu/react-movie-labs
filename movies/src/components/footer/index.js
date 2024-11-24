@@ -3,7 +3,7 @@ import { Paper, IconButton, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-const Footer = ({ pageNum, setCurrentPage }) => {
+const Footer = ({ pageNum, setCurrentPage }) => { //BOILER PLATE CODE FROM MOVIELIST HEADER
   return (
     <Paper 
       component="div" 
@@ -21,7 +21,7 @@ const Footer = ({ pageNum, setCurrentPage }) => {
     >
       <IconButton 
         aria-label="go back" 
-        onClick={() => setCurrentPage(pageNum - 1)}
+        onClick={() => setCurrentPage(pageNum - 1)} // GOES BACK ONE PAGE IF APPLICABLE
       >
         <ArrowBackIcon color="primary" fontSize="large" />
       </IconButton>
@@ -32,7 +32,7 @@ const Footer = ({ pageNum, setCurrentPage }) => {
 
       <IconButton 
         aria-label="go forward" 
-        onClick={() => setCurrentPage(pageNum + 1)}
+        onClick={() => setCurrentPage(pageNum + 1)} // GOES FORWARD ONE PAGE IF APPLICABLE
       >
         <ArrowForwardIcon color="primary" fontSize="large" />
       </IconButton>

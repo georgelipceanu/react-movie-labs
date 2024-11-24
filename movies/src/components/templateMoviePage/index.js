@@ -42,9 +42,9 @@ const TemplateMoviePage = ({ movie, children }) => {
   }
 
   const actorsList = actors.cast;
-  const actorsPerPage = 10;
-  const totalPages = Math.ceil(actorsList.length / actorsPerPage);
-  const displayedActors = actorsList.slice((currentPage - 1) * actorsPerPage, currentPage * actorsPerPage);
+  const actorsPerPage = 10; // CAN BE CHANGED DEPENDING ON WHATS NEEDED
+  const totalPages = Math.ceil(actorsList.length / actorsPerPage); // CALCULATES ALL THE PAGES DEPENDING ON THE MOVIES PER PAGE
+  const displayedActors = actorsList.slice((currentPage - 1) * actorsPerPage, currentPage * actorsPerPage); // SLICES MOVIES DEPENDING ON CURRENT PAGE
 
   return (
     <>
@@ -85,7 +85,7 @@ const TemplateMoviePage = ({ movie, children }) => {
             currentPage={currentPage}
             totalPages={totalPages}
             setCurrentPage={(page) => {
-              if (canNavigate(page, totalPages)) {
+              if (canNavigate(page, totalPages)) { // ONLY SETS CURRENT PAGE IF POSSIBLE
                 setCurrentPage(page);
               }
             }}

@@ -26,8 +26,7 @@ const Header = ({ title, subHeader = false }) => {
         fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
       }}
     >
-      {/* Conditionally render the back and forward buttons */}
-      {!subHeader && (
+      {!subHeader && ( // NEWLY LEARNT WAY OF DOING BOOLEAN CHECK FOR SUBHEADER
         <IconButton aria-label="go back" onClick={() => navigate(-1)}>
           <ArrowBackIcon color="primary" fontSize="large" />
         </IconButton>

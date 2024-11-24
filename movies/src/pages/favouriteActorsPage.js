@@ -8,7 +8,7 @@ import Spinner from '../components/spinner'
 import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
 import WriteReview from "../components/cardIcons/writeReview";
 
-const FavoriteActorsPage = () => {
+const FavoriteActorsPage = () => {// BOILERPLATE CODE FROM FAVORITE MOVIES
     const {favorites: actorIds } = useContext(ActorsContext);
 
     // Create an array of queries and run in parallel.

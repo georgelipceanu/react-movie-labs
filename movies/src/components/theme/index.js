@@ -23,7 +23,7 @@ const CustomTheme = createTheme({
   },
   
     typography: {
-      fontFamily: "'Playfair Display', 'Poppins', sans-serif",
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif", // NEW FONTS NOT LOADING
       h1: {
         fontFamily: "'Playfair Display', serif",
         fontWeight: 700,

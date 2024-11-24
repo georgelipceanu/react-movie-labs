@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export const ActorsContext = React.createContext(null);
 
-const ActorsContextProvider = (props) => {
+const ActorsContextProvider = (props) => { //BOILEPLATE CODE FROM MOVIES CONTEXT
   const [favorites, setFavorites] = useState( [] )
 
   const addToFavorites = (actor) => {

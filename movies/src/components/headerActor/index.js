@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
 
-const ActorHeader = (props) => {
+const ActorHeader = (props) => {//BOILER PLATE CODE FROM MOVIELIST HEADER
   const actor = props.actor;
   const navigate = useNavigate();
 

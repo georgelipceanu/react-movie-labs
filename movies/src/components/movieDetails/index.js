@@ -36,7 +36,7 @@ const chip = { margin: 0.5,
 const MovieDetails = ({ movie }) => {  // Don't miss this!
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const navigate = useNavigate(); // use navigate to change routes programmatically
+  const navigate = useNavigate(); // use navigate to change routes programmatically in dropdown
 
 
   const { data: recommendationsData, isLoading, error } = useQuery(
@@ -112,7 +112,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
       <FormControl fullWidth sx={{ marginTop: 2 }} >
         <InputLabel id="recommendations-label" style={{backgroundColor: "#242424", 
       backgroundColor: "#999999", 
-      fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }>Recommendations</InputLabel>
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }>Recommendations</InputLabel> {/* FONT LOADING NOT WORKING */}
         <Select style={{backgroundColor: "#242424", 
       backgroundColor: "#999999", 
       fontFamily: "'Playfair Display', 'Poppins', sans-serif",} }
@@ -129,9 +129,9 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           ) : error ? (
             <MenuItem>Error loading recommendations</MenuItem>
           ) : (
-            recommendations.map((rec) => (
+            recommendations.map((rec) => ( // DISPLAYS EACH MENU TYPE FOR EACH ITEM
               <MenuItem key={rec.id} value={rec.id}>
-                {rec.title || rec.name} {/* Fallback for title */}
+                {rec.title} 
               </MenuItem>
             ))
           )}
@@ -157,7 +157,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1em' }}>
       <Link
         to={`/movies/${movie.id}/recommended`}
-        state={{
+        state={{ //BUTTON MOVES TO RECOMMENDED PAGE FOR MOVIES
           movie: movie,
         }}
       >

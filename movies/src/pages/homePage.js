@@ -46,7 +46,7 @@ const HomePage = (props) => {
       subHeader={false}
       currentPage={currentPage}
       setCurrentPage={(page) => {
-        if (canNavigate(page, totalPages)) {
+        if (canNavigate(page, totalPages)) { // ONLY MOVES PAGES IF POSSIBLE
           setCurrentPage(page);
         }
       }}

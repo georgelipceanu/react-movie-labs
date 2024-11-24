@@ -98,10 +98,10 @@ export default function MovieCard({ movie, action }) {
 
              
       <Link to={`/movies/${movie.id}/recommended`}
-      state={{
+      state={{ 
         movie: movie,
       }}>
-          <LightbulbIcon color="primary" />
+          <LightbulbIcon color="primary" /> {/* LINK TO RECOMMENDED  */}
         </Link>
       
         <Link to={`/movies/${movie.id}`}>

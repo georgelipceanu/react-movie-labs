@@ -12,7 +12,7 @@ import AddToWatchListIcon from "../cardIcons/addToWatchList";
 import { getMoviesByActor } from "../../api/tmdb-api";
 import { canNavigate } from "../../utils/footerHandling";
 
-const TemplateActorPage = ({ actor, children }) => {
+const TemplateActorPage = ({ actor, children }) => { //BOILER PLATE CODE FROM TEMPLATE MOVIE PAGE
   const [currentPage, setCurrentPage] = useState(1);
   const { data , error, isLoading, isError } = useQuery(
     ["images", { id: actor.id }],
@@ -44,10 +44,10 @@ const TemplateActorPage = ({ actor, children }) => {
     return <h1>{moviesError.message}</h1>;
   }
 
-  const moviesList = movies.results;
-  const moviesPerPage = 10;
-  const totalPages = Math.ceil(moviesList.length / moviesPerPage);
-  const displayedMovies = moviesList.slice((currentPage - 1) * moviesPerPage, currentPage * moviesPerPage);
+  const moviesList = movies.results; 
+  const moviesPerPage = 10; // CAN BE CHANGED DEPENDING ON WHATS NEEDED
+  const totalPages = Math.ceil(moviesList.length / moviesPerPage); // CALCULATES ALL THE PAGES DEPENDING ON THE MOVIES PER PAGE
+  const displayedMovies = moviesList.slice((currentPage - 1) * moviesPerPage, currentPage * moviesPerPage); // SLICES MOVIES DEPENDING ON CURRENT PAGE
 
   return (
     <>
@@ -87,7 +87,7 @@ const TemplateActorPage = ({ actor, children }) => {
             subHeader={true}
             currentPage={currentPage}
             totalPages={totalPages}
-            setCurrentPage={(page) => {
+            setCurrentPage={(page) => { // ONLY SETS CURRENT PAGE IF POSSIBLE
               if (canNavigate(page, totalPages)) {
                 setCurrentPage(page);
               }

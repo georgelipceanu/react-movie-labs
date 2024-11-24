@@ -27,10 +27,10 @@ const root = {
 const chip = { margin: 0.5,
       backgroundColor: "#999999", 
       color: "#ffffff", 
-      fontFamily: "'Playfair Display', 'Poppins', sans-serif", 
+      fontFamily: "'Playfair Display', 'Poppins', sans-serif", // ADDITIONAL FONTS (FAILED TO LOAD)
  };
 
-const ActorDetails = ({ actor }) => {  // Don't miss this!
+const ActorDetails = ({ actor }) => {  //BOILER PLATE CODE FROM MOVIE DETAILS
 
   return (
     <>
@@ -61,7 +61,7 @@ const ActorDetails = ({ actor }) => {  // Don't miss this!
           />
         <Chip icon={<CalendarIcon />} label={`Birthday: ${actor.birthday || "N/A"}`} sx={{ ...chip }} />
 
-        {actor.deathday === null ? (
+        {actor.deathday === null ? ( // CONDITIONAL FOR DEATH DAY, STILL ALIVE IF NULL,
           <Chip
             icon={<CheckCircleIcon />}
             label="Still Alive!"
