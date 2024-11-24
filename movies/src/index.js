@@ -21,6 +21,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CustomTheme from "./components/theme/index"
 import CssBaseline from "@mui/material/CssBaseline";
 import FavoriteActorsPage from "./pages/favouriteActorsPage";
+import SignInPage from "./pages/signInPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,7 +55,8 @@ const App = () => {
             <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/movies/:id/recommended" element={ <RecommendedPage /> } />
-            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/" element={<SignInPage />} />
             <Route path="/actors/:id" element={<ActorPage />} />
             <Route path="*" element={ <Navigate to="/" /> } />
           </Routes>
